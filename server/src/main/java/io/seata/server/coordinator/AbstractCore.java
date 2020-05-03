@@ -68,6 +68,8 @@ public abstract class AbstractCore implements Core {
     @Override
     public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid,
                                String applicationData, String lockKeys) throws TransactionException {
+        LOGGER.info("一次事务操作 {} ====== {}", "branchRegister", branchType);
+
         GlobalSession globalSession = assertGlobalSessionNotNull(xid, false);
         return SessionHolder.lockAndExecute(globalSession, () -> {
             globalSessionStatusCheck(globalSession);
@@ -148,6 +150,7 @@ public abstract class AbstractCore implements Core {
 
     @Override
     public BranchStatus branchCommit(GlobalSession globalSession, BranchSession branchSession) throws TransactionException {
+        LOGGER.info("一次事务操作 {} ====== {}", "branchCommit", branchSession.getBranchType());
         try {
             BranchCommitRequest request = new BranchCommitRequest();
             request.setXid(branchSession.getXid());
@@ -172,6 +175,7 @@ public abstract class AbstractCore implements Core {
 
     @Override
     public BranchStatus branchRollback(GlobalSession globalSession, BranchSession branchSession) throws TransactionException {
+        LOGGER.info("一次事务操作 {} ====== {}", "branchRollback", branchSession.getBranchType());
         try {
             BranchRollbackRequest request = new BranchRollbackRequest();
             request.setXid(branchSession.getXid());

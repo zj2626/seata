@@ -45,6 +45,7 @@ public class SessionHelper {
      */
     public static BranchSession newBranchByGlobal(GlobalSession globalSession, BranchType branchType, String resourceId,
             String applicationData, String lockKeys, String clientId) {
+        System.out.println(">>>>>>>>>>>> newBranchByGlobal >>>>>>>>>>>>>> " + branchType);
         BranchSession branchSession = new BranchSession();
 
         branchSession.setXid(globalSession.getXid());

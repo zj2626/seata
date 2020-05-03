@@ -270,6 +270,7 @@ public class BranchSession implements Lockable, Comparable<BranchSession>, Sessi
 
     @Override
     public boolean lock() throws TransactionException {
+        LOGGER.info("一次事务操作 {} ====== {}", "lock", this.getBranchType());
         if (this.getBranchType().equals(BranchType.AT)) {
             return LockerManagerFactory.getLockManager().acquireLock(this);
         }
@@ -278,6 +279,7 @@ public class BranchSession implements Lockable, Comparable<BranchSession>, Sessi
 
     @Override
     public boolean unlock() throws TransactionException {
+        LOGGER.info("一次事务操作 {} ====== {}", "unlock", this.getBranchType());
         if (this.getBranchType() == BranchType.AT) {
             return LockerManagerFactory.getLockManager().releaseLock(this);
         }

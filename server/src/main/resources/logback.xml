@@ -46,6 +46,7 @@
         <appender-ref ref="seata-default"/>
     </logger>
 
+    <!--<root level="DEBUG">-->
     <root level="INFO">
         <appender-ref ref="seata-default"/>
         <appender-ref ref="stdout"/>

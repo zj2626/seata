@@ -169,6 +169,8 @@ public class DefaultCore implements Core {
 
     @Override
     public boolean doGlobalCommit(GlobalSession globalSession, boolean retrying) throws TransactionException {
+        LOGGER.info("一次事务操作 {} ====== {}", "doGlobalCommit", globalSession.isSaga());
+
         boolean success = true;
         // start committing event
         eventBus.post(new GlobalTransactionEvent(globalSession.getTransactionId(), GlobalTransactionEvent.ROLE_TC,
